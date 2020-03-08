@@ -72,7 +72,7 @@ fn render(pixels: &mut [u8],
             pixels[row * bounds.0 + column] =
                 match escape_time(point, 255) {
                     None => 0,
-                    Some(count) => (count % (128*2)) as u8  //255 - count as u8
+                    Some(count) => (count % (8) * 32) as u8  //255 - count as u8
                 };
         }
     }
@@ -124,7 +124,7 @@ fn generate_field(size: (usize, usize), pixels: &mut[u8], upper_left: Complex<f6
 fn main() {
 
     let field_size = (6400, 6400);
-    let mf_square_fields:usize = 10;
+    let mf_square_fields:usize = 50;
 
     let mf_upper_left: Complex<f64> = Complex {re: -1.16, im: 0.29};
     let mf_lower_right: Complex<f64> = Complex {re: -1.14, im: 0.275};
@@ -146,9 +146,7 @@ fn main() {
             generate_field(field_size, &mut pixels, field_upper_left, field_lower_right);
             
             let filename = format!("field_{:03}_{:03}_0.png", row, col);
-            println!("Go write {}", filename);
             write_image(filename, &pixels, field_size).expect("error writing PNG file");
-            println!("Write done");
         }
     }
 }
