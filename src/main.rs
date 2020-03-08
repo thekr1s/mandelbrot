@@ -124,7 +124,7 @@ fn generate_field(size: (usize, usize), pixels: &mut[u8], upper_left: Complex<f6
 fn main() {
 
     let field_size = (6400, 6400);
-    let mf_square_fields:usize = 50;
+    let mf_square_fields:usize = 3;
 
     let mf_upper_left: Complex<f64> = Complex {re: -1.16, im: 0.29};
     let mf_lower_right: Complex<f64> = Complex {re: -1.14, im: 0.275};

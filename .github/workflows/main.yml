@@ -10,7 +10,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build
-      run: cargo build --release --verbose
+      run: cargo build --release
     - name: Run
-      run: cargo run --release --verbose
+      run: |
+        mkdir megafield
+        cd megafield
+        ../target/release/mandelbrot
 
+    - uses: actions/upload-artifact@v1
+      with:
+        name: megafield
+        path: megafield/
